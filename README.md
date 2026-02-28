@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Crafting Tracker v0.1.0
+The crafting tracker is meant to be a locally ran website to help keep track of crafting recipes for video games. 
 
-## Getting Started
-
-First, run the development server:
-
+## How to set it up
+The first thing you need to do is install all dependencies for the website by running the following while in the project's root directory:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then you must set up the local database using Drizzle. The database is ran locally using SQLite and it should create a file called `crafting-tracker.db`
+in the root directory of the project. To create this database run the following command in the project's root directory:
+```bash
+npx drizzle-kit push
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Ensure the file `crafting-tracker.db` was created successfully before continuing. 
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Next, run the website using the following commands and follow the website to the given URL (the standard is http://localhost:3000): 
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+> Please Note: This project is not made for a production environment. The build is solely meant to run on local computers and to be used as a utility tool for the individual that is running it. Anyone that has access to the site has access to essentially the entire database as well. 
 
-To learn more about Next.js, take a look at the following resources:
+## How to use
+The site is broken up into 3 main components: `Tasks`, `Items`, and `Materials`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`Tasks` are the large goals set by the player. Tasks contain a list of items that the user has a goal of creating in the future. 
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+`Items` are the next step down from `Tasks`. Along with each `Item`, there is a set of `Recipes` that go along with the `Item`. The `Recipe` denotes the `Material`, `Goal Quantity`, and `Quantity Owned` by the user. `Recipes` are what tracks the user's progress towards completion. 
 
-## Deploy on Vercel
+> Note: An `Item` can only belong to a single task and be tracked for a single task. If you wish to have the same `Item` in more than one `Task`, you must create a duplicate of the `Item` and proceed to update both.  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+`Materials` are the base building block of `Recipes` and `Items`. A single `Material` can be tied to multiple `Recipes` with different quantities for each. `Materials` are supposed to be the generic items used to make the final product. 
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+To begin making a `Task`, you must first figure out what `Items` will be in the task, and then decide what `Materials` will be in each `Item`. Start by creating new `Materials` representing the crafting ingredients for each `Item`, then create each `Item` and set the quantity of each `Material`. Finally, create your `Task` with the `Items` that you wish. 
+
+If you make a mistake or a change is needed to be made, `Items` can be deleted from `Tasks`, `Materials` can be deleted from `Items`, `Material` quantity can be changed for each `Item` individually, new `Items` can be added to `Tasks`, and new `Materials` can be added to each `Item`. 
+
+## What it runs on
+This utility site primarily consists of `Next.JS` using `TypeScript` and `TailwindCSS` to create the sites. 
+
+Data persistance is done using `Drizzle ORM` accessing a `SQLite` database that is created locally before running the project. 
+
+The site uses some components from `ShadCN` component library and `Lucide` icons. 
