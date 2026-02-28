@@ -6,7 +6,7 @@ import { updateQuantityOwned } from "@/app/services/actions";
 import { TaskCard } from "./main-dashboard-components/TaskCard";
 import { FullItem, FullTask } from "@/app/repository/dtos";
 import { useRouter } from 'next/navigation';
-import { deleteTask } from "@/app/repository/maindbrepo";
+import { deleteTask, getAllTasks } from "@/app/repository/maindbrepo";
 
 export default function MainDashboard({ tasks }: { tasks: FullTask[] }) {
   const [localTasks, setLocalTasks] = useState<FullTask[]>(tasks);
@@ -17,6 +17,15 @@ export default function MainDashboard({ tasks }: { tasks: FullTask[] }) {
   const routerPush = (path: string) => {
     router.push(path);
   };
+
+  useEffect(() => {
+    const initPage = async () => {
+      setLocalTasks(await getAllTasks());
+    }
+    initPage();
+  }, [])
+
+  
 
   useEffect(() => {
     const timeoutId = setTimeout(() => setErrorText(""), 3000);
