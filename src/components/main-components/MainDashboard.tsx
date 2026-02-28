@@ -8,8 +8,8 @@ import { FullItem, FullTask } from "@/app/repository/dtos";
 import { useRouter } from 'next/navigation';
 import { deleteTask, getAllTasks } from "@/app/repository/maindbrepo";
 
-export default function MainDashboard({ tasks }: { tasks: FullTask[] }) {
-  const [localTasks, setLocalTasks] = useState<FullTask[]>(tasks);
+export default function MainDashboard() {
+  const [localTasks, setLocalTasks] = useState<FullTask[]>([]);
   const [errorText, setErrorText] = useState<string>("");
 
   const router = useRouter();

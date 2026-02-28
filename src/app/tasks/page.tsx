@@ -7,6 +7,6 @@ export default async function Home() {
   const tasksResponse: FullTask[] = await getAllTasks();
 
   return (
-    <MainDashboard tasks={tasksResponse} />
+    <MainDashboard />
   );
 }
