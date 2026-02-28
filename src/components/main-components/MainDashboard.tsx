@@ -24,6 +24,11 @@ export default function MainDashboard({ tasks }: { tasks: FullTask[] }) {
   }, [errorText]);
 
   const handleUpdate = (taskId: number, itemId: number, recipeId: number, val: string) => {
+    const isNumeric = (str: string) => {
+      if (typeof str != "string" || str.trim() === "") return false
+      return Number.isFinite(Number(str));
+    }
+    if (!isNumeric(val)) return;
     const num = Number(val);
     if (isNaN(num) || num < 0) return;
     const maxQuantity = localTasks.find(t => t.id === taskId)?.items.find(i => i.id === itemId)?.recipes.find(r => r.id === recipeId)?.quantity || 0;
