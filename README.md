@@ -1,4 +1,4 @@
-# Crafting Tracker v0.1.0
+# Crafting Tracker v0.1.1
 The crafting tracker is meant to be a locally ran website to help keep track of crafting recipes for video games. 
 
 ## How to set it up
