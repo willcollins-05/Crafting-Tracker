@@ -21,7 +21,9 @@ npm run build
 npm run start
 ```
 
-> Please Note: This project is not made for a production environment. The build is solely meant to run on local computers and to be used as a utility tool for the individual that is running it. Anyone that has access to the site has access to essentially the entire database as well. 
+The website should be mostly accessible for desktop and mobile users, so it can be set up on a home server and can be accessed from any device on the network.
+
+> Please Note: This project is not made for a production environment. The build is solely meant to run on local computers and to be used as a utility tool for the individual that is running it. Anyone that has access to the site has access to essentially the entire database as well. I would recommend keeping the project's scope to a local network at most. 
 
 ## How to use
 The site is broken up into 3 main components: `Tasks`, `Items`, and `Materials`.
